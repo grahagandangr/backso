@@ -7,45 +7,24 @@
   <title>List User</title>
 </head>
 <body>
-  <nav>
-    <h3>Backso</h3>
-    <% if (userCheck) { %>
-      <a href="/posts/add"><button>Add New Post</button></a>
-      <a href="/profiles"><button>Profile</button></a>
-      <a href="/logout"><button>Logout</button></a>
-    <% } else { %>
-      <a href="/login"><button>Login</button></a>
-    <% } %>
-    <% if (role) { %>
-      <a href="/users"><button>List User</button></a>
-    <% } %>
-  </nav><br>
-  <form action="/" method="get">
-    <input type="text" name="search" placeholder="Search by title">
-    <button type="submit">Search</button>
-    <label for="sortBy">Sort by Date</label>
-    <a href="/?sortBy=ASC">Lama -> Baru</a>
-    <a href="/?sortBy=DESC">Baru -> Lama</a>
-  </form>
-  <br>
+  <%- include('partials/navbar')  %>
   <table border="1">
     <tr>
-      <th>Title</th>
-      <th>Image</th>
-      <th>Created By</th>
-      <th>Updated at</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Role</th>
       <th>Action</th>
     </tr>
-    <% posts.forEach((el) => { %>
+    <% users.forEach((el) => { %>
       <tr>
-        <td><%= el.title %></td>
-        <td><img src="<%= el.imgUrl %>" alt="ini gambar" width="200px" height="100px"></td>
-        <td><%= el.User.Profile.name %></td>
-        <td><%= formatDate(el.updatedAt) %></td>
-        <td><a href="/posts/<%= el.id %>"><button>Detail</button></a></td>
+        <td><%= el.username %></td>
+        <td><%= el.email %></td>
+        <td><%= el.role %></td>
+        <td>
+          <a href="users/<%= el.id %>/delete"><button>Delete</button></a>
+        </td>
       </tr>
     <% }) %>
   </table>
-  <p><%= quote.text %> by <%= quote.author %></p>
 </body>
 </html>

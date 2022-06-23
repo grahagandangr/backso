@@ -9,15 +9,20 @@
 <body>
   <nav>
     <h3>Backso</h3>
-    <% if (userCheck) { %>
-      <a href="/posts/add"><button>Add New Post</button></a>
-      <a href="/profiles"><button>Profile</button></a>
-      <a href="/logout"><button>Logout</button></a>
-    <% } else { %>
-      <a href="/login"><button>Login</button></a>
+    <% if (role != 'admin') { %>
+      <% if (userCheck) { %>
+        <a href="/posts/add"><button>Add New Post</button></a>
+        <a href="/profiles"><button>Profile</button></a>
+        <a href="/logout"><button>Logout</button></a>
+      <% } else { %>
+        <a href="/login"><button>Login</button></a>
+      <% } %>
     <% } %>
-    <% if (role) { %>
+    
+    <% if (role == 'admin') { %>
       <a href="/users"><button>List User</button></a>
+      <a href="/logout"><button>Logout</button></a>
+
     <% } %>
   </nav><br>
   <form action="/" method="get">

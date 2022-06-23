@@ -202,7 +202,24 @@ class Controller {
   static listUsers(req, res) {
     User.findAll()
       .then((users) => {
-        
+        res.render('list-user', { users })
+      })
+      .catch((err) => {
+        res.send(err)
+      })
+  }
+
+  static deleteUser(req, res) {
+    const { id } = req.params
+    Profile.destroy({ where: { UserId: id } })
+      .then(() => {
+        return User.destroy({ where: { id } })
+      })
+      .then(() => {
+        res.redirect('/users')
+      })
+      .catch((err) => {
+        res.send(err)
       })
   }
 }
