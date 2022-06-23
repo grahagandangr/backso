@@ -1,5 +1,4 @@
 const { Post, Profile, User } = require('../models')
-const { Op } = require("sequelize")
 const Quote = require('inspirational-quotes')
 const bcryptjs = require('bcryptjs')
 const formatDate  = require('../helpers/formatDate')
@@ -146,7 +145,6 @@ class Controller {
     const UserId = req.session.userId
     const { title, imgUrl, description, repository } = req.body
     const updatedPost = { title, imgUrl, description, repository, UserId }
-    console.log(updatedPost);
     Post.update(updatedPost, { where: { id } })
       .then(() => {
         res.redirect(`/posts/${id}`)
@@ -165,7 +163,6 @@ class Controller {
   static detailPost(req, res) {
     const { id } = req.params
     const UserId = req.session.userId
-    console.log(UserId);
     Post.findByPk(id, {
       include: [{
         model: User,
