@@ -3,6 +3,7 @@ const { Op } = require("sequelize")
 const Quote = require('inspirational-quotes')
 const bcryptjs = require('bcryptjs')
 const formatDate  = require('../helpers/formatDate')
+const { post } = require('../routes')
 
 class Controller {
   static home(req, res) {
@@ -110,8 +111,9 @@ class Controller {
   }
 
   static addPostPost(req, res) {
+    const id = req.session.userId
     const { title, imgUrl, description, repository } = req.body
-    const newPost = { title, imgUrl, description, repository }
+    const newPost = { title, imgUrl, description, repository, UserId: id }
     Post.create(newPost)
       .then(() => {
         res.redirect(`/`)
@@ -126,6 +128,38 @@ class Controller {
         else res.send(err)
       })
   }
+
+  static updatePost(req, res) {
+    const errors = req.query.errors
+    const { id } = req.params
+    Post.findByPk(id)
+      .then((post) => {
+        res.render('edit-post-form', { post, errors })
+      })
+  }
+
+  static updatePostPost(req, res) {
+    const { id } = req.params
+    const UserId = req.session.userId
+    const { title, imgUrl, description, repository } = req.body
+    const updatedPost = { title, imgUrl, description, repository, UserId }
+    console.log(updatedPost);
+    Post.update(updatedPost, { where: { id } })
+      .then(() => {
+        res.redirect(`/`)
+      })
+      .catch((err) => {
+        if (err.name === 'SequelizeValidationError') {
+          let errors = err.errors.map((el) => {
+            return el.message
+          })
+          res.redirect(`/posts/${id}/edit?errors=${errors}`)
+        } 
+        else res.send(err)
+      })
+  }
+
+
 }
 
 module.exports = Controller
