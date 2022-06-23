@@ -8,21 +8,46 @@ class Controller {
     Post.findAll()
       .then((posts) => {
         let quote = Quote.getQuote()
-        res.send(quote)
+        res.render('home', { quote } )
       })
       .catch((err) => {
         res.send(err)
       })
   }
   static register(req, res) {
-    res.render('register-form')
+    const errors = req.query.errors
+    res.render('register-form', { errors })
   }
 
   static registerPost(req, res) {
-    const { username, email, password, role } = req.body
-    const newUser = { username, email, password, role }
-    User.create(newUser)
+    const { username, email, password} = req.body
+    const newUser = { username, email, password }
+    User.create(newUser, { returning: true })
       .then((user) => {
+        res.redirect(`/register/profile/${user.id}`)
+      })
+      .catch((err) => {
+        if (err.name === 'SequelizeValidationError') {
+          let errors = err.errors.map((el) => {
+            return el.message
+          })
+          res.redirect(`/register?errors=${errors}`)
+        } 
+        else res.send(err)
+      })
+  }
+
+  static addProfile(req, res) {
+    const { id } = req.params
+    res.render('profile-form', { id })
+  }
+
+  static addProfilePost(req, res) {
+    const { id } = req.params
+    const { name, bio, profilePicture } = req.body
+    const newProfile = { name, bio, profilePicture, UserId: id }
+    Profile.create(newProfile)
+      .then(() => {
         res.redirect('/login')
       })
       .catch((err) => {

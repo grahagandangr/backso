@@ -16,11 +16,39 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.Post)
       User.hasOne(models.Profile)
     }
+
+    formatUsername() {
+      return this.username.toLowerCase()
+    }
   }
   User.init({
-    username: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
+    username: {
+      type: DataTypes.STRING,
+      validate: { 
+        notEmpty: {
+          msg: 'Username harus diisi!'
+        }
+      }
+    },
+    email: {
+      type: DataTypes.STRING,
+      validate: { 
+        notEmpty: {
+          msg: 'Email harus diisi!'
+        },
+        isEmail: {
+          msg: 'Format email tidak valid!'
+        }
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      validate: { 
+        notEmpty: {
+          msg: 'Username harus diisi!'
+        }
+      }
+    },
     role: DataTypes.STRING
   }, {
     sequelize,
@@ -30,6 +58,8 @@ module.exports = (sequelize, DataTypes) => {
     const salt = bcryptjs.genSaltSync(10)
     const hash = bcryptjs.hashSync(instance.password, salt)
     instance.password = hash
+    instance.role = 'user'
+    instance.username = instance.formatUsername()
   })
   return User;
 };

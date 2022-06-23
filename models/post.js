@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Post.belongsTo(models.User)
     }
+
+    static listWithSeacrh(model, search) {
+      
+    }
   }
   Post.init({
     title: DataTypes.STRING,

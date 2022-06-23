@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Form</title>
+</head>
+<body>
+  <h1>Profile Form</h1>
+  <form action="/register/profile/<%= id %>" method="post">
+    <label for="name">name</label><br>
+    <input type="text" id="name" name="name" placeholder="Type name.."><br><br>
+    <label for="bio">bio</label><br>
+    <input type="text" id="bio" name="bio" placeholder="Type bio.."><br><br>
+    <label for="profilePicture">URL Profile Picture</label><br>
+    <input type="text" id="profilePicture" name="profilePicture" placeholder="Input URL Profile Picture.."><br><br>
+    <br><br>
+    <button type="submit">Submit</button>
+  </form> 
+</body>
+</html>

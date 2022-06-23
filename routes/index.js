@@ -14,34 +14,13 @@ router.post('/register', Controller.registerPost)
 router.get('/login', Controller.login)
 //  post login
 router.post('/login', Controller.loginPost)
+router.get('/register/profile/:id', Controller.addProfile)
+router.post('/register/profile/:id', Controller.addProfilePost)
 
-router.get('/logout', Controller.logout)
-
-// router.use((req, res, next) => {
-//   if (!req.session.userId) {
-//     const error = 'login dulu ngab'
-//     res.redirect(`/login?error=${error}`)
-//   } else {
-//     next()
-//   }
-// })
-
-router.get('/', isLogin, isAdmin,  Controller.home)
-
-// router.use((req, res, next) => {
-//   console.log(req.session)
-//   if (req.session.userId && req.session.role != 'admin') {
-//     const error = 'Ga boleh akses ngabbb'
-//     res.redirect(`/login?error=${error}`)
-//   } else {
-//     next()
-//   }
-// })
-
-
-
-router.use('/users', usersRoute)
-router.use('/profiles', profilesRoute)
-router.use('/posts', postsRoute)
+router.get('/',  Controller.home)
+router.use('/users', isLogin, isAdmin, usersRoute)
+router.use('/profiles', isLogin, profilesRoute)
+router.use('/posts', isLogin, postsRoute)
+router.get('/logout', isLogin, Controller.logout)
 
 module.exports = router
