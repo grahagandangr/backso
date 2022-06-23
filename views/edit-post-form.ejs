@@ -8,6 +8,7 @@
 </head>
 <body>
   <h1>Edit Post</h1>
+  <%- include('partials/navbar')  %>
   <form action="/posts/<%= post.id %>/edit" method="post">
     <label for="title">title</label><br>
     <input type="text" id="title" name="title" value="<%= post.title %>"><br><br>

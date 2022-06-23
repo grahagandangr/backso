@@ -7,12 +7,12 @@ const formatDate  = require('../helpers/formatDate')
 class Controller {
   static home(req, res) {
     const userCheck = req.session.userId
-    console.log(userCheck);
+    const role = req.session.role
     const { search, sortBy } = req.query
     Post.listWithSearchSort(User, Profile, search, sortBy)
       .then((posts) => {
         let quote = Quote.getQuote()
-        res.render('home', { posts, quote, formatDate, userCheck } )
+        res.render('home', { posts, quote, formatDate, userCheck, role } )
       })
       .catch((err) => {
         res.send(err)
@@ -149,7 +149,7 @@ class Controller {
     console.log(updatedPost);
     Post.update(updatedPost, { where: { id } })
       .then(() => {
-        res.redirect(`/`)
+        res.redirect(`/posts/${id}`)
       })
       .catch((err) => {
         if (err.name === 'SequelizeValidationError') {
@@ -179,10 +179,32 @@ class Controller {
         res.send(err)
       })
   }
-      
-  
 
+  static profile(req, res) {
+    const UserId = req.session.userId    
+    Profile.findOne({
+      include: [{
+        model: User,
+        include: Post
+      }],
+      where: {
+        UserId
+      } 
+    })
+    .then((profile) => {
+      res.render('profile', { profile, formatDate })
+    })
+    .catch((err) => {
+      res.send(err)
+    })
+  }
 
+  static listUsers(req, res) {
+    User.findAll()
+      .then((users) => {
+        
+      })
+  }
 }
 
 module.exports = Controller

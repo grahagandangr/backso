@@ -26,4 +26,29 @@ console.log(bcryptjs.compareSync('admin', hash))
 
 // test commit
 
+// <% profile.User.Posts.forEach((el) => { %>
+//   <tr>
+//     <td><%= el.title %></td>
+//     <td><img src="<%= el.imgUrl %>" alt="ini gambar" width="200px" height="100px"></td>
+//     <td><a href="/profiles/<%= el.User.id %>"><%= el.User.Profile.name %></a></td>
+//     <td><%= formatDate(el.updatedAt) %></td>
+//     <td>
+//       <a href="/posts/<%= el.id %>"><button>Detail</button></a>
+//       <a href="/posts/<%= post.id %>/edit"><button>Edit</button></a>
+//     </td>
+//   </tr>
+// <% }) %>
 
+
+// <% profile.User.Posts.forEach((el) => { %>
+//   <tr>
+//     <td><%= el.title %></td>
+//     <td><img src="<%= el.imgUrl %>" alt="ini gambar" width="200px" height="100px"></td>
+//     <td><a href="/profiles/<%= el.id %>"><%= el.name %></a></td>
+//     <td><%= formatDate(el.updatedAt) %></td>
+//     <td>
+//       <a href="/posts/<%= el.id %>"><button>Detail</button></a>
+//       <a href="/posts/<%= el.id %>/edit"><button>Edit</button></a>
+//     </td>
+//   </tr>
+// <% }) %>

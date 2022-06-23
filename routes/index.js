@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const usersRoute = require('./users')
 const profilesRoute = require('./profiles')
-const postsRoute = require('./profiles')
+const postsRoute = require('./posts')
 const Controller = require('../controllers')
 const { isLogin, isAdmin } = require('../middleware/auth')
 
