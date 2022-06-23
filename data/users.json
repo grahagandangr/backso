@@ -1,0 +1,51 @@
+[{
+  "username": "admin",
+  "email": "admin@mail.com",
+  "password": "$2a$10$uYDvJwL.LECtzm0z5ggZJuISrJBq6EJgEetbBBLMRDm6pH11z1s5a",
+  "role": "admin"
+}, {
+  "username": "gandang",
+  "email": "gandang@gmail.com",
+  "password": "$2a$10$IKoojlTO.WVk0eIAGAlMDuh/eh/5SMvDl5xn8i2R4iayXd/arAge2",
+  "role": "user"
+}, {
+  "username": "buffy",
+  "email": "buffy@gmail.com",
+  "password": "$2a$10$AU.Dj0omT0KLI6q.UAHUKuxNBXUT.U6CL2LA4uPfSysrawZrvMrX.",
+  "role": "user"
+}, {
+  "username": "wbodega3",
+  "email": "sespinho3@hhs.gov",
+  "password": "$2a$10$3KCmzyW5oKU9T4iSnHolFeSOho/y/o1KK82dFqF79w0qk1MV37Qve",
+  "role": "user"
+}, {
+  "username": "jyeulet4",
+  "email": "fbroscombe4@scientificamerican.com",
+  "password": "$2a$10$DU5W.wGHNbK0FwvkkKmAEu5znWkAMJEPQ4i1YcrwIJJUzYiNoEtsC",
+  "role": "user"
+}, {
+  "username": "trollingson5",
+  "email": "omineghelli5@webs.com",
+  "password": "sJEwccL7E",
+  "role": "user"
+}, {
+  "username": "mbachanski6",
+  "email": "cblakes6@blog.com",
+  "password": "$2a$10$w.vLn325Yg6mXBryDVVTC.B2Slld4XUActBjeTpPmAV3DtyvJ/cuC",
+  "role": "user"
+}, {
+  "username": "cblacket7",
+  "email": "ariditch7@wsj.com",
+  "password": "$2a$10$AUOd1UlWE5W3WJMO4YvlfeAKhNIjmrIEmy99c90.e1AFFiDDIcTiW",
+  "role": "user"
+}, {
+  "username": "lfrise8",
+  "email": "gflatley8@cmu.edu",
+  "password": "$2a$10$Ezm9e0yl96AIlq2mYWGWHuXUENJQkDe1BNjjKwrRQmVZc.NkIHueC",
+  "role": "user"
+}, {
+  "username": "mstoak9",
+  "email": "vjoscelyn9@state.tx.us",
+  "password": "$2a$10$i1DeebD0I4SV1DMVRc.fOurtv1FFgnEqYgFFqLv0fHw92HE2yfUwi",
+  "role": "user"
+}]
