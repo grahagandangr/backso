@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List User</title>
+</head>
+<body>
+  <%- include('partials/navbar')  %>
+  <table border="1">
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Action</th>
+    </tr>
+    <% users.forEach((el) => { %>
+      <tr>
+        <td><%= el.username %></td>
+        <td><%= el.email %></td>
+        <td><%= el.role %></td>
+        <td>
+          <a href="users/<%= el.id %>/delete"><button>Delete</button></a>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
+</body>
+</html>

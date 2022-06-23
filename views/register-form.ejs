@@ -14,11 +14,10 @@
     <label for="email">email</label><br>
     <input type="text" id="email" name="email" placeholder="Type email.."><br><br>
     <label for="password">password</label><br>
-    <input type="password" id="password" name="password" placeholder="Type password.."><br><br>
-    <label for="role">role</label><br>
-    <input type="text" id="role" name="role" placeholder="Type role.."><br><br>
+    <input type="password" id="password" name="password" placeholder="Type password..">
     <br><br>
-    <button type="submit">Save</button>
+    <button type="submit">Submit</button>
   </form> 
+  <%- include('partials/errors', { errors })  %>
 </body>
 </html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Post</title>
+</head>
+<body>
+  <h1>Edit Post</h1>
+  <%- include('partials/navbar')  %>
+  <form action="/posts/<%= post.id %>/edit" method="post">
+    <label for="title">title</label><br>
+    <input type="text" id="title" name="title" value="<%= post.title %>"><br><br>
+    <label for="imgUrl">imgUrl</label><br>
+    <input type="text" id="imgUrl" name="imgUrl" value="<%= post.imgUrl %>"><br><br>
+    <label for="title">description</label><br>
+    <textarea name="description" id="description" cols="30" rows="10"><%= post.description %></textarea><br><br>
+    <label for="repository">repository</label><br>
+    <input type="text" id="repository" name="repository" value="<%= post.repository %>"><br><br>
+    <br><br>
+    <button type="submit">Update</button>
+  </form> 
+  <%- include('partials/errors', { errors })  %>
+</body>
+</html>

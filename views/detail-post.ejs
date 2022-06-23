@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Post</title>
+</head>
+<body>
+  <%- include('partials/navbar')  %>
+  <h1><%= post.title %></h1>
+  <p><b>Created by</b> <%= post.User.Profile.name %></p>
+  <% if (UserId == post.User.id) { %>
+    <a href="/posts/<%= post.id %>/edit"><button>Edit</button></a>
+  <% } %>
+  <br>
+  <img src="<%= post.imgUrl %>" alt="ini gambar" width="500px" height="300px">
+  <pre><%= post.description %></pre>
+  <a href="<%= post.repository %>"><button>Reponya Ngab!!</button></a>
+  <p><b>Updated at</b> <%= formatDate(post.updatedAt) %></p>
+</body>
+</html>

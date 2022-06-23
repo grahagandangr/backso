@@ -15,9 +15,30 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Profile.init({
-    name: DataTypes.STRING,
-    bio: DataTypes.STRING,
-    profilePicture: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      validate: { 
+        notEmpty: {
+          msg: 'Name harus diisi!'
+        }
+      }
+    },
+    bio: {
+      type: DataTypes.STRING,
+      validate: { 
+        notEmpty: {
+          msg: 'Bio harus diisi!'
+        }
+      }
+    },
+    profilePicture: {
+      type: DataTypes.STRING,
+      validate: { 
+        notEmpty: {
+          msg: 'URL Profile Picture harus diisi!'
+        }
+      }
+    },
     UserId: DataTypes.INTEGER
   }, {
     sequelize,
