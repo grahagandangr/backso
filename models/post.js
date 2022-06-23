@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const { Op } = require("sequelize")
 module.exports = (sequelize, DataTypes) => {
   class Post extends Model {
     /**
@@ -14,8 +15,29 @@ module.exports = (sequelize, DataTypes) => {
       Post.belongsTo(models.User)
     }
 
-    static listWithSeacrh(model, search) {
+    static listWithSearchSort(model1, model2, search, sortBy) {
+      let options = {
+        include: [{
+              model: model1,
+              include: model2
+        }],
+        where: {}
+      }
 
+      if (search) {
+        options.where = {
+          ...options.where,
+          title: {
+            [Op.iLike]: `%${search}%`
+          }
+        }
+      }
+
+      if (sortBy) {
+        options.order = [['updatedAt', `${sortBy}`]]
+      }
+      
+      return Post.findAll(options)
     }
   }
   Post.init({

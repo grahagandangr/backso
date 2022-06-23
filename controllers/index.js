@@ -3,20 +3,16 @@ const { Op } = require("sequelize")
 const Quote = require('inspirational-quotes')
 const bcryptjs = require('bcryptjs')
 const formatDate  = require('../helpers/formatDate')
-const { post } = require('../routes')
 
 class Controller {
   static home(req, res) {
-    Post.findAll({
-      include: [{
-        model: User,
-        include: Profile
-      }]
-    })
+    const userCheck = req.session.userId
+    console.log(userCheck);
+    const { search, sortBy } = req.query
+    Post.listWithSearchSort(User, Profile, search, sortBy)
       .then((posts) => {
-        res.send(posts)
         let quote = Quote.getQuote()
-        // res.render('home', { quote } )
+        res.render('home', { posts, quote, formatDate, userCheck } )
       })
       .catch((err) => {
         res.send(err)
@@ -48,7 +44,8 @@ class Controller {
 
   static addProfile(req, res) {
     const { id } = req.params
-    res.render('profile-form', { id })
+    const errors = req.query.errors
+    res.render('profile-form', { id, errors })
   }
 
   static addProfilePost(req, res) {
@@ -60,7 +57,13 @@ class Controller {
         res.redirect('/login')
       })
       .catch((err) => {
-        res.send(err)
+        if (err.name === 'SequelizeValidationError') {
+          let errors = err.errors.map((el) => {
+            return el.message
+          })
+          res.redirect(`/register/profile/${id}?errors=${errors}`)
+        } 
+        else res.send(err)
       })
   }
 
@@ -102,7 +105,7 @@ class Controller {
       } else {
         res.redirect('/login');
       }
-    });
+    })
   }
 
   static addPost(req, res) {
@@ -158,6 +161,26 @@ class Controller {
         else res.send(err)
       })
   }
+
+  static detailPost(req, res) {
+    const { id } = req.params
+    const UserId = req.session.userId
+    console.log(UserId);
+    Post.findByPk(id, {
+      include: [{
+        model: User,
+        include: Profile
+      }]
+    })    
+      .then((post) => {
+        res.render('detail-post', { UserId, post, formatDate } )
+      })
+      .catch((err) => {
+        res.send(err)
+      })
+  }
+      
+  
 
 
 }

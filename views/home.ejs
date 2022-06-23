@@ -4,9 +4,42 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Home</title>
 </head>
 <body>
-  <p><%= JSON.stringify(quote) %></p>
+  <h1>Backso</h1>
+  <% if (userCheck) { %>
+  <a href="/profiles"><button>Profiles</button></a>
+  <% } else { %>
+    <a href="/login"><button>Login</button></a>
+  <% } %>
+  <br><br>
+  <form action="/" method="get">
+    <input type="text" name="search" placeholder="Search by title">
+    <button type="submit">Search</button>
+    <label for="sortBy">Sort by Date</label>
+    <a href="/?sortBy=ASC">Lama -> Baru</a>
+    <a href="/?sortBy=DESC">Baru -> Lama</a>
+  </form>
+  <br>
+  <table border="1">
+    <tr>
+      <th>Title</th>
+      <th>Image</th>
+      <th>Created By</th>
+      <th>Updated at</th>
+      <th>Action</th>
+    </tr>
+    <% posts.forEach((el) => { %>
+      <tr>
+        <td><%= el.title %></td>
+        <td><img src="<%= el.imgUrl %>" alt="ini gambar" width="200px" height="100px"></td>
+        <td><a href="/profiles/<%= el.User.id %>"><%= el.User.Profile.name %></a></td>
+        <td><%= formatDate(el.updatedAt) %></td>
+        <td><a href="posts/<%= el.id %>"><button>Detail</button></a></td>
+      </tr>
+    <% }) %>
+  </table>
+  <p><%= quote.text %> by <%= quote.author %></p>
 </body>
 </html>
