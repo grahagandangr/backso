@@ -1,0 +1,51 @@
+[{
+  "username": "admin",
+  "email": "admin@mail.com",
+  "password": "admin",
+  "role": "admin"
+}, {
+  "username": "gandang",
+  "email": "gandang@gmail.com",
+  "password": "gandang",
+  "role": "user"
+}, {
+  "username": "buffy",
+  "email": "buffy@gmail.com",
+  "password": "buffy",
+  "role": "user"
+}, {
+  "username": "wbodega3",
+  "email": "sespinho3@hhs.gov",
+  "password": "LwfTKcK",
+  "role": "user"
+}, {
+  "username": "jyeulet4",
+  "email": "fbroscombe4@scientificamerican.com",
+  "password": "LZDGGxLcEn",
+  "role": "user"
+}, {
+  "username": "trollingson5",
+  "email": "omineghelli5@webs.com",
+  "password": "sJEwccL7E",
+  "role": "user"
+}, {
+  "username": "mbachanski6",
+  "email": "cblakes6@blog.com",
+  "password": "tOHGcDmo",
+  "role": "user"
+}, {
+  "username": "cblacket7",
+  "email": "ariditch7@wsj.com",
+  "password": "GkcGJgvJI",
+  "role": "user"
+}, {
+  "username": "lfrise8",
+  "email": "gflatley8@cmu.edu",
+  "password": "gCze6xibKEQ",
+  "role": "user"
+}, {
+  "username": "mstoak9",
+  "email": "vjoscelyn9@state.tx.us",
+  "password": "8wqLYHah",
+  "role": "user"
+}]
