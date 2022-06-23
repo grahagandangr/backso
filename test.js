@@ -24,5 +24,6 @@ console.log(hash);
 console.log(bcryptjs.compareSync('kampretos', hash))
 console.log(bcryptjs.compareSync('nomos', hash))
 
+// test commit
 
 
