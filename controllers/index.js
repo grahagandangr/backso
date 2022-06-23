@@ -2,18 +2,26 @@ const { Post, Profile, User } = require('../models')
 const { Op } = require("sequelize")
 const Quote = require('inspirational-quotes')
 const bcryptjs = require('bcryptjs')
+const formatDate  = require('../helpers/formatDate')
 
 class Controller {
   static home(req, res) {
-    Post.findAll()
+    Post.findAll({
+      include: [{
+        model: User,
+        include: Profile
+      }]
+    })
       .then((posts) => {
+        res.send(posts)
         let quote = Quote.getQuote()
-        res.render('home', { quote } )
+        // res.render('home', { quote } )
       })
       .catch((err) => {
         res.send(err)
       })
   }
+
   static register(req, res) {
     const errors = req.query.errors
     res.render('register-form', { errors })
@@ -94,6 +102,29 @@ class Controller {
         res.redirect('/login');
       }
     });
+  }
+
+  static addPost(req, res) {
+    const errors = req.query.errors
+    res.render('add-post-form', { errors })
+  }
+
+  static addPostPost(req, res) {
+    const { title, imgUrl, description, repository } = req.body
+    const newPost = { title, imgUrl, description, repository }
+    Post.create(newPost)
+      .then(() => {
+        res.redirect(`/`)
+      })
+      .catch((err) => {
+        if (err.name === 'SequelizeValidationError') {
+          let errors = err.errors.map((el) => {
+            return el.message
+          })
+          res.redirect(`/posts/add?errors=${errors}`)
+        } 
+        else res.send(err)
+      })
   }
 }
 

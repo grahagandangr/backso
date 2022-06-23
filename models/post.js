@@ -15,14 +15,42 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     static listWithSeacrh(model, search) {
-      
+
     }
   }
   Post.init({
-    title: DataTypes.STRING,
-    imgUrl: DataTypes.STRING,
-    description: DataTypes.STRING,
-    repository: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      validate: { 
+        notEmpty: {
+          msg: 'title harus diisi!'
+        }
+      }
+    },
+    imgUrl: {
+      type: DataTypes.STRING,
+      validate: { 
+        notEmpty: {
+          msg: 'imgUrl harus diisi!'
+        }
+      }
+    },
+    description: {
+      type: DataTypes.STRING,
+      validate: { 
+        notEmpty: {
+          msg: 'description harus diisi!'
+        }
+      }
+    },
+    repository: {
+      type: DataTypes.STRING,
+      validate: { 
+        notEmpty: {
+          msg: 'URL repository harus diisi!'
+        }
+      }
+    },
     UserId: DataTypes.INTEGER
   }, {
     sequelize,
